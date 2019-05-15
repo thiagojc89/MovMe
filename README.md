@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MovMe
+MovMe  is a Social Network to connect people to talk about movies and rate them in a group decision.
 
-## Available Scripts
+# third-party API 
+The Movie Database API.
 
-In the project directory, you can run:
+# Endpoints:
 
-### `npm start`
+* Top rated
+https://api.themoviedb.org/3/movie/top_rated?api_key='API-KEY'&language=en-US&page=1
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Movie Detail
+https://api.themoviedb.org/3/movie/200?api_key='API-KEY'&language=en-US
+ 
+## Route
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+| Method | Path | Action|
+|--------|------|-------|
+| GET | /auth/login | Login a user into the website |
+| POST | /auth/register | Sign in a new user |
+| GET | /movies | Show Movie List |
+| GET | /movies/{movie_id} | Show Movie details including reviews |
+| POST | /movies/new | Add movie to DB after discussion closed |
+| POST | /groups | Create a new Group |
+| DELETE | /auth/{user_id} | Delete user account |
+| PUT | /groups/{group_id}/{user_id}/ | Add User into a Group |
+| POST | /groups/adddiscussion | Create new discussion |
+| PUT | /groups/addmovie | Add a movie into the group to be discussed |
+| PUT | /groups/addtexttodiscussion | Add text to a discussion |
+| PUT | /groups/close | Update to discussion, status = CLOSED |
+| PUT | /groups/grade/{discussion_id} | Answer the questions and select a rate |
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# User story
+1. Home Page will provide a login and sign-up option.
+2. In the home page the user it should be able to see the latest non-spoilers reviews.
+3. The home page would have links to navigate to the other pages link (movies, about, groups)
+4. When the user clicks on the movie to see the whole description it should see a popup or alert telling them that he is just about to enter into an area that can contain spoilers. 
+5. On the sidebar container it should show suggestions of movies with a low number of rating.
+6. After login or sign up the user should have the ability to perform these actions:
+   * Create a group
+   * Add a user inside the group
+   * Add a movie to discuss
+   * Close discussion (A discussion can only be closed after the group rate the movie with the same grade).
+   * Only the user who created the group can close the discussion 
+   * When closing a discussion the user would have to fill a form with a few YES/NO questions like (the movie was watched more than once after been added to be discussed)
+7. Every user should be able to see the groups and the discussions they are participating in.
+8. When clicking on a discussion link on the user's page it should redirect to the movie discussion page.
+9. on the move discussion page every user should be able to rate the movie and give his option about it.
+10. the user's opinion once submitted should be attached to the chat area where other users can read it. It should work as a mural.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+User Model
+Username
+Email
+Password
+Group
+Movie Model
+movieID
+Review
+Group
+Rate/Form
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Group Model
+UserID
+MovieID
+Discussion
+movieID
+Text-Discussion
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Wireframe
+https://imgur.com/a/sUm3vWS

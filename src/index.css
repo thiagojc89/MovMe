@@ -11,3 +11,79 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.header{
+	display: flex;
+	justify-content: space-around;
+	border:2px solid black;
+	margin: 5px;
+	height: 70px;
+}
+nav {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 700px;
+}
+a{
+	text-decoration: none;
+	margin: 5px
+}
+.login-form{
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.mainContainer{
+	border:2px solid black;
+	margin: 5px;
+}
+.footer{
+	border:2px solid black;
+	margin: 5px;
+}
+.movieElement{
+ 	display: flex;
+ 	flex-direction: row ;
+ 	margin: 10px;
+ 	padding-bottom: 10px;
+ 	border-bottom: 5px solid grey;
+
+}
+.movieData{
+	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: flex-start;
+ 	margin: 10px; 
+}
+.userContainer{
+	display: flex;
+	border:2px solid black;
+	margin: 5px;
+	padding: 20px;
+}
+.userMenu{
+	border:2px solid black;
+	margin: 5px;
+}
+.userIndex{
+	border:2px solid black;
+	margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
