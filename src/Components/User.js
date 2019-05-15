@@ -2,8 +2,20 @@ import React from 'react';
 
 
 class User extends React.Component {
-	constructer(props){
-	
+	constructor(props){
+		super()
+		this.state={
+			groupName:''
+		}
+	}
+	handleChanged = (e)=>{
+		console.log(e);
+		
+		this.setState({[e.currentTarget.name]: e.currentTarget.value});
+		
+	}
+	handleNameGroup = ()=>{
+
 	}
 	handleCreateGroup = async (e) => {
 		
@@ -14,7 +26,10 @@ class User extends React.Component {
 		    const createGroup = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/new', {
 			    method: 'POST',
 			    credentials: 'include',
-			    body: JSON.stringify({userId:this.props.userLoggedId}),
+			    body: JSON.stringify({
+			    	name: this.state.groupName,
+			    	userId:this.props.userLoggedId
+			    }),
 			    headers:{
 			    	'Content-Type': 'application/json'
 			    }
@@ -40,7 +55,11 @@ class User extends React.Component {
 	    <div className="userContainer">
 	    	<div className='userMenu'>
 	    		<form>
-		    		<input type='submit' onClick={this.handleCreateGroup} value='CREATE GROUP'/>
+		    		<input type='submit' onClick={this.handleNameGroup} value='CREATE GROUP'/>
+
+		    		<input className='nameGroup' type='text' name='groupName'value={this.state.groupName} onChange={this.handleChanged}/>
+		    		<input className='nameGroup' type='submit' onClick={this.handleCreateGroup} value='CREATE'/>		    		
+
 		    		<input type='submit' onClick={this.handleDeleteAccount} value='DELETE ACCOUNT'/>
 		    	</form>
 	    	</div>
