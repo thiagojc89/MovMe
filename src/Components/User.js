@@ -3,7 +3,7 @@ import React from 'react';
 
 class User extends React.Component {
 	constructer(props){
-
+	
 	}
 	handleCreateGroup = async (e) => {
 		

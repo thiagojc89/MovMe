@@ -18,24 +18,24 @@ class Group extends React.Component {
 		
 	}
 	handleSubmit = async (e) => {
-	    e.preventDefault();
+	  //   e.preventDefault();
 
-	    // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
-	    const createGroup = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/register', {
-	      method: 'POST',
-	      credentials: 'include',
-	      body: JSON.stringify({_id:this.props.userLoggedId}),
-	      headers:{
-	        'Content-Type': 'application/json'
-	        }
-	    });
+	  //   // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
+	  //   const createGroup = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/register', {
+	  //     method: 'POST',
+	  //     credentials: 'include',
+	  //     body: JSON.stringify({_id:this.props.userLoggedId}),
+	  //     headers:{
+	  //       'Content-Type': 'application/json'
+	  //       }
+	  //   });
 
-	    const parsedResponse = await createGroup.json();
+	  //   const parsedResponse = await createGroup.json();
 	    
-	    console.log(parsedResponse);
-	    // if(parsedResponse.data === 'login successful'){
-	    //   this.props.history.push('/movies');
-	    // }
+	  //   console.log(parsedResponse);
+	  //   // if(parsedResponse.data === 'login successful'){
+	  //   //   this.props.history.push('/movies');
+	  //   // }
 
   	}
 	render(){

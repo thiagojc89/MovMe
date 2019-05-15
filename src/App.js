@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       movies:[],
       logged:false,
-      userName: ''
+      userId: ''
     }
   }
   componentDidMount(){
@@ -27,7 +27,7 @@ class App extends React.Component {
     
     this.setState({
               logged: true,
-              userName: userId
+              userId: userId
             })
   }
   getMovies = async (page:1)=>{
