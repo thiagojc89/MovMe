@@ -54,24 +54,5 @@ https://api.themoviedb.org/3/movie/200?api_key='API-KEY'&language=en-US
 
 
 
-User Model
-Username
-Email
-Password
-Group
-Movie Model
-movieID
-Review
-Group
-Rate/Form
-
-Group Model
-UserID
-MovieID
-Discussion
-movieID
-Text-Discussion
-
-
 # Wireframe
 https://imgur.com/a/sUm3vWS
