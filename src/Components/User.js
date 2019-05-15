@@ -14,8 +14,9 @@ class User extends React.Component {
 		this.setState({[e.currentTarget.name]: e.currentTarget.value});
 		
 	}
-	handleNameGroup = ()=>{
-
+	handleNameGroup = (e)=>{
+		e.preventDefault();
+		document.querySelector('#nameGroup').style.visibility='visible'
 	}
 	handleCreateGroup = async (e) => {
 		
@@ -38,6 +39,7 @@ class User extends React.Component {
 		    const parsedResponse = await createGroup.json();
 		    
 		    console.log(parsedResponse);
+		    document.querySelector('#nameGroup').style.visibility='hidden'
 	    } 
 	    catch(err){
 	    	console.log(err);
@@ -57,20 +59,15 @@ class User extends React.Component {
 	    		<form>
 		    		<input type='submit' onClick={this.handleNameGroup} value='CREATE GROUP'/>
 
-		    		<input className='nameGroup' type='text' name='groupName'value={this.state.groupName} onChange={this.handleChanged}/>
-		    		<input className='nameGroup' type='submit' onClick={this.handleCreateGroup} value='CREATE'/>		    		
-
+		    		<div id='nameGroup'>
+		    			<input type='text' name='groupName'value={this.state.groupName} onChange={this.handleChanged}/>
+		    			<input type='submit' onClick={this.handleCreateGroup} value='CREATE'/>		    		
+		    		</div>
 		    		<input type='submit' onClick={this.handleDeleteAccount} value='DELETE ACCOUNT'/>
 		    	</form>
 	    	</div>
 	    	<div className='userIndex'>
-	    		<p>GROUP NAME</p>
-	    		<ul>
-	    			<li>Movie</li>
-	    			<li>Movie</li>
-	    			<li>Movie</li>
-	    			<li>Movie</li>
-	    		</ul>
+	    		
 	    	</div>
 	    </div>
 	  );

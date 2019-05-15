@@ -65,13 +65,13 @@ class App extends React.Component {
   }
   render(){
           // <Route exect path='/user' component={ User } />:
-          // <Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
+          // <User userLoggedId={this.state.userId}/>
 
     return (
       <div className="App">
         <Header login={this.login}/>
         <Switch>
-          <User userLoggedId={this.state.userId}/>
+          <Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
         </Switch>
         <Footer/>
       </div>
