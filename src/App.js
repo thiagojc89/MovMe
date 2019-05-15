@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import Header from './Components/header'
 import MainContainer from './Components/mainContainer'
-import User from './Components/User'
+import User from './Components/user'
+import Register from './Components/register'
+import Group from './Components/group'
 import Footer from './Components/footer'
 import { Route, Switch } from 'react-router-dom';
 
@@ -12,7 +14,8 @@ class App extends React.Component {
     super()
     this.state = {
       movies:[],
-      logged:false
+      logged:false,
+      userName: ''
     }
   }
   componentDidMount(){
@@ -20,15 +23,14 @@ class App extends React.Component {
     this.getMovies(2);
 
   }
-  login = ()=>{
+  login = (userId)=>{
     
     this.setState({
-              logged: true
+              logged: true,
+              userName: userId
             })
   }
   getMovies = async (page:1)=>{
-
-    console.log(process.env)
 
     console.log('call getMovies function');
 
@@ -62,16 +64,14 @@ class App extends React.Component {
 
   }
   render(){
-    // this.props.history.push('/')
-    // <Route exact path="/murals/home" render={(props) => <MuralContainer {...props} murals={this.state.murals} />} />
-    // <Route exact path="/users/user/login" component={ Login } />
-    // this.getMovies()
+          // <Route exect path='/user' component={ User } />:
+          // <Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
+
     return (
       <div className="App">
         <Header login={this.login}/>
         <Switch>
-          <Route exect path='/' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
-          <Route path='/user' component={ User } />:
+          <User userLoggedId={this.state.userId}/>
         </Switch>
         <Footer/>
       </div>

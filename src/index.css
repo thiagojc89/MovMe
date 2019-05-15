@@ -71,7 +71,17 @@ a{
 	border:2px solid black;
 	margin: 5px;
 }
-
+.registerContainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:2px solid black;
+	margin: 5px;
+}
+.registerForm{
+	display: flex;
+	flex-flow: column wrap;
+}
 
 
 

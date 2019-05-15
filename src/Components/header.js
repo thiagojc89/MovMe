@@ -24,7 +24,6 @@ class Header extends React.Component {
 			password: this.state.password
 		}
 		console.log('just about to call api in my server');
-		console.log(JSON.stringify(loginData));
 	
 		try {
 			const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/login', {
@@ -39,14 +38,16 @@ class Header extends React.Component {
 
       		const parsedResponse = await loginResponse.json();
 
+      		console.log('parsedResponse');
 		    console.log(parsedResponse);
       		if(parsedResponse.status === 200){
 
-      			this.props.login();
-      			this.props.history.push('/user')
+      			this.props.login(parsedResponse.data._id);
+
 		        this.setState({
 		        	usernameLogged: parsedResponse.data.firstName,
 		        	logged: true
+
 		        })
       		}
     	}
