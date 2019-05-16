@@ -26,6 +26,7 @@ class App extends React.Component {
   componentDidMount(){
 
     this.getMovies(2);
+    Group.getUserDate();
 
   }
   login = (userId)=>{
@@ -75,7 +76,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header login={this.login}/>
-        <User userLoggedId={this.state.userId}/>
+        <User userLoggedId={this.state.userId}/> 
+        
       </div>
     );
   }

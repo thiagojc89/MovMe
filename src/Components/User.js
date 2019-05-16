@@ -6,8 +6,12 @@ class User extends React.Component {
 	constructor(props){
 		super()
 		this.state={
-			groupName:''
+			groupName:'',
+			userData: []
 		}
+	}
+	componentDidMount(){
+		this.getUserData()
 	}
 	handleChanged = (e)=>{
 		console.log(e);
@@ -46,6 +50,29 @@ class User extends React.Component {
 	    	console.log(err);
 	    }
 	}
+	getUserData = async ()=>{
+		try{
+    
+		    // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
+		    const userData = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/'+ this.props.userLoggedId)
+
+
+		    console.log('=========after get houte=========', userData)
+		    
+		    const parsedResponse = await userData.json();
+		    
+		    console.log('parsedResponse=====>',parsedResponse);
+
+
+		    this.setState({
+		    	userData: [...userData,parsedResponse]
+		    })
+	    
+	    } 
+	    catch(err){
+	    	console.log(err);
+	    }
+	}
 	handleDeleteAccount = async (e) => {
 		
 	    e.preventDefault();
@@ -65,7 +92,7 @@ class User extends React.Component {
 		    	</form>
 	    	</div>
 	    	<div className='userIndex'>
-	    		{this.props.userLoggedId ? <Group userLoggedId={this.props.userLoggedId}/>: null}
+	    		{this.props.userLoggedId ? <Group userData={this.state.userData}/>: null}
 	    	</div>
 	    </div>
 	  );
