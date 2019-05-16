@@ -5,7 +5,6 @@ import MainContainer from './Components/mainContainer'
 import User from './Components/user'
 import Register from './Components/register'
 import Footer from './Components/footer'
-import { Route, Switch } from 'react-router-dom';
 
 
 class App extends React.Component {

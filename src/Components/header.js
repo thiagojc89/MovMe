@@ -12,9 +12,6 @@ class Header extends React.Component {
 		}
 	}
 	componentDidMount(){
-
-		console.log('this is the props inside the did mount function');
-		console.log(this.props.usernameLogged);
 		
 		if (this.props.usernameLogged){
 			this.setState({
@@ -35,7 +32,6 @@ class Header extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		}
-		console.log('just about to call api in my server');
 	
 		try {
 			const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/login', {
@@ -46,17 +42,13 @@ class Header extends React.Component {
 		        	'Content-Type': 'application/json'
 		    	}
       		});
-      		console.log('after fetch');
-
+      		
       		const parsedResponse = await loginResponse.json();
-
-      		console.log('parsedResponse on HEADER Hadle Login');
-		    console.log(parsedResponse);
 
       		if(parsedResponse.status === 200){
 
       			this.props.login(parsedResponse.data._id);
-      			
+
       			this.props.getUserData();
 
 		        this.setState({
@@ -106,8 +98,6 @@ class Header extends React.Component {
 	}
 	render(){	
 
-		console.log('render HEADER');
-		console.log(this.state.usernameLogged);	
 	  	return (
 	    	<div className="header">
 			    {this.state.logged ? <h2>{this.state.usernameLogged}</h2> : this.loginRegister()}

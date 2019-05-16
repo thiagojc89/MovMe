@@ -17,7 +17,7 @@ code {
 	justify-content: space-around;
 	border:10px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 	height: 70px;
 }
@@ -33,7 +33,7 @@ a{
 .mainContainer{
 	border:10px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 }
 .footer{
@@ -43,7 +43,7 @@ a{
 .movieElement{
  	display: flex;
  	flex-direction: row ;
- 	margin: 10px;
+ 	margin: 30px;
  	padding-bottom: 10px;
  	border-bottom: 5px solid grey;
 
@@ -53,25 +53,25 @@ a{
  	flex-direction: column;
  	justify-content: center;
  	align-items: flex-start;
- 	margin: 10px; 
+ 	margin: 30px; 
 }
 .userContainer{
 	display: flex;
 	border:10px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 }
 .userMenu{
 	border: 5px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 }
 .userIndex{
 	border: 5px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 }
 .registerContainer{
@@ -80,7 +80,7 @@ a{
 	align-items: center;
 	border:10px solid black;
 	border-radius: 30px;
-	margin: 10px;
+	margin: 30px;
 	padding: 20px;
 }
 .registerForm{

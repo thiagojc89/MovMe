@@ -3,9 +3,6 @@ import React from 'react';
 
 const Group = (props)=>{
 
-	
-		console.log('props inside of the group component');
-		console.log(props);
 	if (props.userData[0].length > 0){
 
 		let groupNames = props.userData[0].map((g,i) => {
@@ -20,7 +17,7 @@ const Group = (props)=>{
 	else{
 		return(
 			<p>
-				No Groups
+				No Groups yet
 			</p>
 		)
 	}
