@@ -12,7 +12,7 @@ class Register extends React.Component {
 		}
 	}
 	handleChanged = (e)=>{
-		console.log(e);
+		
 		
 		this.setState({[e.currentTarget.name]: e.currentTarget.value});
 		
@@ -31,7 +31,12 @@ class Register extends React.Component {
 
 	    const parsedResponse = await registerResponse.json();
 	    
-	    console.log(parsedResponse);
+	    // console.log(parsedResponse);
+	    // console.log(parsedResponse.data.firstName);
+
+	    this.props.loginFromRegister(parsedResponse.data.firstName)
+	    this.props.showMovieList()
+	    // this.props.getUserData();
 	    // if(parsedResponse.data === 'login successful'){
 	    //   this.props.history.push('/movies');
 	    // }

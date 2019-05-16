@@ -16,11 +16,10 @@ class App extends React.Component {
       logged:false,
       userId: null,
       userData:[],
-      render:{
-          movies: false,
-          users: false,
-          register: false
-        }
+      usernameLogged:null,
+      users: false,
+      register: false,
+      movieList: true
     }
   }
   componentDidMount(){
@@ -33,6 +32,24 @@ class App extends React.Component {
     this.setState({
               logged: true,
               userId: userId
+            })
+  }
+  renderRegister = ()=>{
+    this.setState({
+              register: true,
+              movieList: false
+            })
+  }
+  showMovieList = ()=>{
+    this.setState({
+              movieList: true
+            })
+  }
+  loginFromRegister= (username)=>{
+    this.setState({
+        usernameLogged: username,
+                logged: true,
+              register: false,  
             })
   }
   getMovies = async (page:1)=>{
@@ -77,21 +94,50 @@ class App extends React.Component {
 
 
       this.setState({
-        userData: [...this.state.userData, parsedResponse.data] 
+        userData: [...this.state.userData, parsedResponse.data.group]
       })
     
     } 
     catch(err){
       console.log(err);
     }
-}
+  }
+  concatUserData = (newData)=>{
+
+    console.log('old data=====');
+    console.log(this.state.userData);
+    console.log('old data=============');
+
+    console.log('NEW data=====');
+    console.log(newData.newGroup);
+    console.log('NEW data=============');
+
+    const allGroups = this.state.userData
+
+    allGroups[0].push(newData.newGroup)
+    console.log('allGroups========');
+    console.log(allGroups);
+    this.setState({
+      userData: allGroups
+    })
+  }
   render(){
-          //<Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
+
+
+    console.log('render APP');
+    console.log(this.state.usernameLogged);
 
     return (
       <div className="App">
-        <Header login={this.login} getUserData={this.getUserData}/>
-        <User userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData}/> 
+      {
+        this.state.usernameLogged?
+          <Header usernameLogged={this.state.usernameLogged}login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister}/>
+        :
+          <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister}/>
+      }
+        {this.state.register? <Register showMovieList={this.showMovieList}getUserData={this.getUserData} loginFromRegister={this.loginFromRegister}/> : null}
+        {this.state.logged? <User usernameLogged={this.usernameLogged} userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData} concatUserData={this.concatUserData}/>: null }
+        {this.state.movieList? <MainContainer movies={this.state.movies}/> : null}
         <Footer/>
       </div>
     );

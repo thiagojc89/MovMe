@@ -41,7 +41,10 @@ class User extends React.Component {
 
 		    const parsedResponse = await createGroup.json();
 
-		    this.props.getUserData()
+		    console.log('parsedResponse.data');
+		    console.log(parsedResponse.data);
+
+		    this.props.concatUserData(parsedResponse.data)
 		    
 		    document.querySelector('#nameGroup').style.visibility='hidden'
 		    
@@ -55,7 +58,7 @@ class User extends React.Component {
 	    e.preventDefault();
 	}
 	render(){
-		console.log('render USER');
+		// console.log('render USER');
 	  return (
 	    <div className="userContainer">
 	    	<div className='userMenu'>

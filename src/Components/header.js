@@ -8,7 +8,19 @@ class Header extends React.Component {
 			email:'',
 			password:'',
 			logged:false,
-			usernameLogged:''
+			usernameLogged:null
+		}
+	}
+	componentDidMount(){
+
+		console.log('this is the props inside the did mount function');
+		console.log(this.props.usernameLogged);
+		
+		if (this.props.usernameLogged){
+			this.setState({
+				usernameLogged: this.props.usernameLogged,
+				logged:true
+			})
 		}
 	}
 	handleChage =(event)=> {
@@ -38,11 +50,13 @@ class Header extends React.Component {
 
       		const parsedResponse = await loginResponse.json();
 
-      		console.log('parsedResponse');
+      		console.log('parsedResponse on HEADER Hadle Login');
 		    console.log(parsedResponse);
+
       		if(parsedResponse.status === 200){
 
       			this.props.login(parsedResponse.data._id);
+      			
       			this.props.getUserData();
 
 		        this.setState({
@@ -57,6 +71,10 @@ class Header extends React.Component {
     	}
 
 		//set logged status to true if login was success 
+	}
+	handleRegister = (e)=>{
+		e.preventDefault()
+		this.props.renderRegister()
 	}
 	loginRegister = ()=>{
 	    return(	
@@ -86,15 +104,12 @@ class Header extends React.Component {
 	    	</form>
 	    	);
 	}
-	render(){		
+	render(){	
+
+		console.log('render HEADER');
+		console.log(this.state.usernameLogged);	
 	  	return (
 	    	<div className="header">
-		    	<nav>
-			    	<button>LOGO</button>
-			    	<button>MOVIES</button>
-			    	<button>GROUPS</button>
-			    	<button>ABOUT</button>
-			    </nav>
 			    {this.state.logged ? <h2>{this.state.usernameLogged}</h2> : this.loginRegister()}
 	    	</div>
 	  	);	
