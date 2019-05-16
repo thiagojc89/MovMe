@@ -15,7 +15,12 @@ class App extends React.Component {
     this.state = {
       movies:[],
       logged:false,
-      userId: ''
+      userId: null,
+      render:{
+          movies: false,
+          users: false,
+          register: false
+        }
     }
   }
   componentDidMount(){
@@ -65,17 +70,19 @@ class App extends React.Component {
   }
   render(){
           // <Route exect path='/user' component={ User } />:
-          // <User userLoggedId={this.state.userId}/>
+          //<Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
 
     return (
       <div className="App">
         <Header login={this.login}/>
-        <Switch>
-          <Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
-        </Switch>
-        <Footer/>
+        <User userLoggedId={this.state.userId}/>
       </div>
     );
   }
 }
 export default App;
+
+
+
+
+// conditional rendering

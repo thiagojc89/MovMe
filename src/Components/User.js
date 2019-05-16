@@ -1,4 +1,5 @@
 import React from 'react';
+import Group from './group'
 
 
 class User extends React.Component {
@@ -44,9 +45,6 @@ class User extends React.Component {
 	    catch(err){
 	    	console.log(err);
 	    }
-	    // if(parsedResponse.data === 'login successful'){
-	    //   this.props.history.push('/movies');
-	    // }
 	}
 	handleDeleteAccount = async (e) => {
 		
@@ -67,7 +65,7 @@ class User extends React.Component {
 		    	</form>
 	    	</div>
 	    	<div className='userIndex'>
-	    		
+	    		{this.props.userLoggedId ? <Group userLoggedId={this.props.userLoggedId}/>: null}
 	    	</div>
 	    </div>
 	  );
