@@ -7,27 +7,25 @@ class User extends React.Component {
 		super()
 		this.state={
 			groupName:'',
-			userData: []
 		}
 	}
 	componentDidMount(){
-		this.getUserData()
+		// this.getUserData()
 	}
 	handleChanged = (e)=>{
-		console.log(e);
 		
 		this.setState({[e.currentTarget.name]: e.currentTarget.value});
 		
 	}
 	handleNameGroup = (e)=>{
 		e.preventDefault();
+		//makes input visible so then the user can type the name of the group.
 		document.querySelector('#nameGroup').style.visibility='visible'
 	}
 	handleCreateGroup = async (e) => {
 		
 	    e.preventDefault();
 	    try{
-	    	console.log(this.props);
 		    // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
 		    const createGroup = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/new', {
 			    method: 'POST',
@@ -42,32 +40,11 @@ class User extends React.Component {
 		    });
 
 		    const parsedResponse = await createGroup.json();
+
+		    this.props.getUserData()
 		    
-		    console.log(parsedResponse);
 		    document.querySelector('#nameGroup').style.visibility='hidden'
-	    } 
-	    catch(err){
-	    	console.log(err);
-	    }
-	}
-	getUserData = async ()=>{
-		try{
-    
-		    // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
-		    const userData = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/'+ this.props.userLoggedId)
-
-
-		    console.log('=========after get houte=========', userData)
 		    
-		    const parsedResponse = await userData.json();
-		    
-		    console.log('parsedResponse=====>',parsedResponse);
-
-
-		    this.setState({
-		    	userData: [...userData,parsedResponse]
-		    })
-	    
 	    } 
 	    catch(err){
 	    	console.log(err);
@@ -78,6 +55,7 @@ class User extends React.Component {
 	    e.preventDefault();
 	}
 	render(){
+		console.log('render USER');
 	  return (
 	    <div className="userContainer">
 	    	<div className='userMenu'>
@@ -92,7 +70,7 @@ class User extends React.Component {
 		    	</form>
 	    	</div>
 	    	<div className='userIndex'>
-	    		{this.props.userLoggedId ? <Group userData={this.state.userData}/>: null}
+	    		{this.props.userData.length > 0 ? <Group userData={this.props.userData}/>: null}
 	    	</div>
 	    </div>
 	  );

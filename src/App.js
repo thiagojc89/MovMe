@@ -4,7 +4,6 @@ import Header from './Components/header'
 import MainContainer from './Components/mainContainer'
 import User from './Components/user'
 import Register from './Components/register'
-import Group from './Components/group'
 import Footer from './Components/footer'
 import { Route, Switch } from 'react-router-dom';
 
@@ -16,6 +15,7 @@ class App extends React.Component {
       movies:[],
       logged:false,
       userId: null,
+      userData:[],
       render:{
           movies: false,
           users: false,
@@ -26,7 +26,6 @@ class App extends React.Component {
   componentDidMount(){
 
     this.getMovies(2);
-    Group.getUserDate();
 
   }
   login = (userId)=>{
@@ -62,29 +61,40 @@ class App extends React.Component {
         )
       })
 
-    console.log(list);
-
     this.setState({
       movies: [...this.state.movies, list]
     })
-
   }
+  getUserData = async ()=>{
+  try{
+  
+      // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
+      const userData = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/'+ this.state.userId)
+
+      const parsedResponse = await userData.json();
+
+      console.log(parsedResponse.data,'===============================');
+
+
+      this.setState({
+        userData: [...this.state.userData, parsedResponse.data] 
+      })
+    
+    } 
+    catch(err){
+      console.log(err);
+    }
+}
   render(){
-          // <Route exect path='/user' component={ User } />:
           //<Route exect path='/home' component={(props)=> <MainContainer movies={this.state.movies}/> }/>
 
     return (
       <div className="App">
-        <Header login={this.login}/>
-        <User userLoggedId={this.state.userId}/> 
-        
+        <Header login={this.login} getUserData={this.getUserData}/>
+        <User userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData}/> 
+        <Footer/>
       </div>
     );
   }
 }
 export default App;
-
-
-
-
-// conditional rendering

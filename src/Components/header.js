@@ -43,6 +43,7 @@ class Header extends React.Component {
       		if(parsedResponse.status === 200){
 
       			this.props.login(parsedResponse.data._id);
+      			this.props.getUserData();
 
 		        this.setState({
 		        	usernameLogged: parsedResponse.data.firstName,
