@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './Components/header'
 import MainContainer from './Components/mainContainer'
-import User from './Components/user'
+import User from './Components/User'
 import Register from './Components/register'
 import Footer from './Components/footer'
 
