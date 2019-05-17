@@ -10,15 +10,21 @@ class Header extends React.Component {
 			logged:false,
 			usernameLogged:null,
 			msg : ''
+		
 		}
 	}
 	componentDidMount(){
-		
-		if (this.props.usernameLogged){
-			this.setState({
-				usernameLogged: this.props.usernameLogged,
-				logged:true
-			})
+		console.log('TOKEN');
+		console.log(this.props.token);
+		if (this.props.token){
+			// this.setState({
+			// 	email: this.props.token.email,
+			// 	password: this.props.token.password
+			// })
+			console.log("calling login func");
+
+			document.getElementById("login-btn").click()
+			// this.handleLogin();
 		}
 	}
 	handleChage =(event)=> {
@@ -28,11 +34,22 @@ class Header extends React.Component {
 	}
 	handleLogin = async (event)=> {
 		event.preventDefault()
-		//call API to login
-		const loginData = {
-			email: this.state.email,
-			password: this.state.password
+
+		
+		console.log(event.target);
+
+		let loginData = {}
+		if (this.state.email === ''){
+			loginData = this.props.token
 		}
+		else{
+			loginData.email = this.state.email
+			loginData.password = this.state.password
+		}
+			
+
+		console.log('loginData=========');
+		console.log(loginData);
 	
 		try {
 			const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/login', {
@@ -95,11 +112,12 @@ class Header extends React.Component {
 	    			value={this.state.password}
 	    			onChange={this.handleChage}/>
 	    			<br/>
-	    		<input 
+	    		<input
+	    			id='login-btn' 
 	    			type='submit' 
 	    			value='Login'
 	    			onClick={this.handleLogin}/>
-	    		<input 
+	    		<input
 	    			type='submit' 
 	    			value='Register'
 	    			onClick={this.handleRegister}/>	    			
@@ -107,7 +125,7 @@ class Header extends React.Component {
 	    	);
 	}
 	render(){	
-
+		console.log('render HEADER');
 	  	return (
 	    	<div className="header">
 			    {this.state.logged ? <h2>{this.state.usernameLogged}</h2> : this.loginRegister()}

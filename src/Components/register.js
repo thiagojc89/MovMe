@@ -31,8 +31,15 @@ class Register extends React.Component {
 
 	    const parsedResponse = await registerResponse.json();
 	    
-	    this.props.loginFromRegister(parsedResponse.data.firstName)
-	    this.props.showMovieList()
+	    if (parsedResponse.status === 200){
+		    this.props.loginFromRegister(this.state.email,this.state.password)
+		    this.props.showMovieList()
+
+	    }
+	    else{
+	    	console.log('error in register new user');
+	    }
+
 
 
   	}

@@ -18,7 +18,8 @@ class App extends React.Component {
       usernameLogged:null,
       users: false,
       register: false,
-      movieList: true
+      movieList: true,
+      token: null,
     }
   }
   componentDidMount(){
@@ -44,11 +45,14 @@ class App extends React.Component {
               movieList: true
             })
   }
-  loginFromRegister= (username)=>{
+  loginFromRegister= (email,password)=>{
     this.setState({
-        usernameLogged: username,
-              register: false,  
-            })
+        token:{
+            email: email,
+            password: password
+        },
+        register: false
+        })
   }
   getMovies = async (page:1)=>{
 
@@ -112,17 +116,17 @@ class App extends React.Component {
     })
   }
   render(){
-
+    console.log('render APP');
+    // console.log(this.state.token);
     return (
       <div className="App">
-      {
-        this.state.usernameLogged?
-          <Header usernameLogged={this.state.usernameLogged}login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister}/>
-        :
-          <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister}/>
-      }
+        {this.state.register ?
+          null
+          :
+          <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister} token={this.state.token}/>
+        }
         {this.state.register? <Register showMovieList={this.showMovieList}getUserData={this.getUserData} loginFromRegister={this.loginFromRegister}/> : null}
-        {this.state.logged? <User usernameLogged={this.usernameLogged} userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData} concatUserData={this.concatUserData}/>: null }
+        {this.state.logged? <User userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData} concatUserData={this.concatUserData}/>: null }
         {this.state.movieList? <MainContainer movies={this.state.movies}/> : null}
         <Footer/>
       </div>
