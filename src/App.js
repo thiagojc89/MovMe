@@ -23,7 +23,7 @@ class App extends React.Component {
   }
   componentDidMount(){
 
-    this.getMovies(2);
+    this.getMovies(8);
 
   }
   login = (userId)=>{
