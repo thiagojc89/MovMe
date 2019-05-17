@@ -72,9 +72,8 @@ class User extends React.Component {
 			    }
 		    });
 
-		    console.log(deletedUser);
 		    const parsedResponse = await deletedUser.json();
-		    console.log(parsedResponse);
+
 		    document.querySelector('#deleteAccount').style.visibility='hidden'
 	    } 
 	    catch(err){
@@ -82,7 +81,6 @@ class User extends React.Component {
 	    }	    
 	}
 	render(){
-		// console.log('render USER');
 	  return (
 	    <div className="userContainer">
 	    	<div className='userMenu'>
@@ -113,7 +111,6 @@ class User extends React.Component {
 	    	</div>
 	    </div>
 	  );
-
 	}
 }
 

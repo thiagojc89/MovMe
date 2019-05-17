@@ -56,8 +56,6 @@ class App extends React.Component {
   }
   getMovies = async (page:1)=>{
 
-    console.log('call getMovies function');
-
     const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
 
     const movies = await response.json()
@@ -92,9 +90,6 @@ class App extends React.Component {
 
       const parsedResponse = await userData.json();
 
-      console.log(parsedResponse.data,'===============================');
-
-
       this.setState({
         userData: [...this.state.userData, parsedResponse.data.group]
       })
@@ -116,7 +111,6 @@ class App extends React.Component {
     })
   }
   render(){
-    console.log('render APP');
     // console.log(this.state.token);
     return (
       <div className="App">

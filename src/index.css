@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(50,255,150,.4);
 }
 
 code {
@@ -42,8 +43,28 @@ a{
 	padding: 20px;
 }
 .footer{
-	border:2px solid black;
-	margin: 5px;
+	border-top: 10px solid black;
+	display: flex;
+	justify-content: space-around;
+	margin: 30px 40px 0 40px;
+	padding: 20px;
+}
+.footer > img{
+	object-fit: contain;
+	height: 70px;
+	margin-right: 200px;
+}
+a > img{
+	object-fit: contain;
+	height: 30px;
+}
+#credit{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+	margin-left: 200px;
 }
 .movieElement{
  	display: flex;
