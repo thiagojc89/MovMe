@@ -14,12 +14,17 @@ code {
 
 .header{
 	display: flex;
+	flex-direction: column;
+	align-items: center;
 	justify-content: space-around;
 	border:10px solid black;
 	border-radius: 30px;
 	margin: 30px;
 	padding: 20px;
 	height: 70px;
+}
+.header > p{
+	font-size: 10px;
 }
 a{
 	text-decoration: none;
@@ -91,7 +96,9 @@ a{
 #nameGroup{
 	visibility: hidden;
 }
-
+#deleteAccount{
+	visibility: hidden;	
+}
 
 
 

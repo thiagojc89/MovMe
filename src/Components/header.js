@@ -8,7 +8,8 @@ class Header extends React.Component {
 			email:'',
 			password:'',
 			logged:false,
-			usernameLogged:null
+			usernameLogged:null,
+			msg : ''
 		}
 	}
 	componentDidMount(){
@@ -36,7 +37,7 @@ class Header extends React.Component {
 		try {
 			const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/login', {
 		        method: 'POST',
-		        credentials: 'include',// on every request we have to send the cookie
+		        credentials: 'include',
 		        body: JSON.stringify(loginData),
 		        headers: {
 		        	'Content-Type': 'application/json'
@@ -44,18 +45,27 @@ class Header extends React.Component {
       		});
       		
       		const parsedResponse = await loginResponse.json();
+      		
+      		console.log(parsedResponse);
 
       		if(parsedResponse.status === 200){
 
       			this.props.login(parsedResponse.data._id);
-
       			this.props.getUserData();
-
 		        this.setState({
 		        	usernameLogged: parsedResponse.data.firstName,
 		        	logged: true
-
 		        })
+      		}
+      		if (parsedResponse.status === 300){
+      			this.setState({
+      				msg: 'Invalid User/Password'
+      			})
+      		}
+      		else{
+      			 this.setState({
+      				msg: null
+      			})
       		}
     	}
     	catch(err){
@@ -101,6 +111,9 @@ class Header extends React.Component {
 	  	return (
 	    	<div className="header">
 			    {this.state.logged ? <h2>{this.state.usernameLogged}</h2> : this.loginRegister()}
+		    	
+		    	{this.state.msg !== '' ? <p>{this.state.msg}</p> : <p></p>}
+		    	
 	    	</div>
 	  	);	
 	}

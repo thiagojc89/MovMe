@@ -47,7 +47,6 @@ class App extends React.Component {
   loginFromRegister= (username)=>{
     this.setState({
         usernameLogged: username,
-                logged: true,
               register: false,  
             })
   }
@@ -103,28 +102,16 @@ class App extends React.Component {
   }
   concatUserData = (newData)=>{
 
-    console.log('old data=====');
-    console.log(this.state.userData);
-    console.log('old data=============');
-
-    console.log('NEW data=====');
-    console.log(newData.newGroup);
-    console.log('NEW data=============');
-
+  
     const allGroups = this.state.userData
 
     allGroups[0].push(newData.newGroup)
-    console.log('allGroups========');
-    console.log(allGroups);
+
     this.setState({
       userData: allGroups
     })
   }
   render(){
-
-
-    console.log('render APP');
-    console.log(this.state.usernameLogged);
 
     return (
       <div className="App">
