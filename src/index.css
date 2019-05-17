@@ -15,7 +15,7 @@ code {
 
 .header{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
 	border:10px solid black;
@@ -49,12 +49,16 @@ a{
 	margin: 30px 40px 0 40px;
 	padding: 20px;
 }
-.footer > img{
+.footer > a > img{
 	object-fit: contain;
 	height: 70px;
 	margin-right: 200px;
 }
 a > img{
+	object-fit: contain;
+	height: 30px;
+}
+#tmdb{
 	object-fit: contain;
 	height: 30px;
 }

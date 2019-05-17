@@ -24,7 +24,7 @@ class App extends React.Component {
   }
   componentDidMount(){
 
-    this.getMovies(8);
+    this.getMovies(1);
 
   }
   login = (userId)=>{
@@ -68,10 +68,12 @@ class App extends React.Component {
 
             <div className='movieData'>
                 <div>
-                    <strong>title: </strong>{movie.title}
+                    <strong>Title: </strong>{movie.title}
+
                 </div>
+                <br/>
                 <div>
-                    <strong>overview: </strong>{movie.overview}
+                    <strong>Overview: </strong>{movie.overview}
                 </div>
             </div>
           </div>

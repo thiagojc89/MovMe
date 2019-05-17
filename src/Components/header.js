@@ -113,9 +113,17 @@ class Header extends React.Component {
 
 	  	return (
 	    	<div className="header">
-			    {this.state.logged ? <h2>{this.state.usernameLogged}</h2> : this.loginRegister()}
-		    	
-		    	{this.state.msg !== '' ? <p>{this.state.msg}</p> : <p></p>}
+	    		<div>
+	    			<h1>MovmE</h1>
+	    		</div>
+	    		<div>
+	    			<h1>Catalog</h1>
+	    		</div>
+	    		<div>
+				    {this.state.logged ? <h2>{this.state.usernameLogged}<br/><button>logout</button></h2> : this.loginRegister()}
+			    	
+			    	{this.state.msg !== '' ? <p>{this.state.msg}</p> : <p></p>}
+		    	</div>
 		    	
 	    	</div>
 	  	);	

@@ -47,6 +47,7 @@ class Register extends React.Component {
 	  return (
 	    <div className='registerContainer'>
 	    	<form className='registerForm' onSubmit={this.handleSubmit}>
+	    	<h1>New User</h1>
 	    		First Name: <input 
 		    		type='text'
 		    		name='firstName' 
