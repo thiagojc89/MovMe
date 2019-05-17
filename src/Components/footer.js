@@ -6,14 +6,14 @@ function Footer() {
   return (
     <div className="footer">
     	<div id="credit">
-	    	<spam>create by: Thiago Cavalcante</spam>
+	    	<span>create by: Thiago Cavalcante</span>
 	    		<div>
 	    		
 					<a href="https://github.com/thiagojc89">
-						<img class='footer-img' src={github}/>
+						<img alt='' className='footer-img' src={github}/>
 					</a> 
 					<a href="https://www.linkedin.com/in/thiagojc89/">
-						<img class='footer-img' src={linkedin}/>
+						<img alt='' className='footer-img' src={linkedin}/>
 					</a>
 				</div>
 		</div>

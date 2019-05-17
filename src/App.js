@@ -20,6 +20,7 @@ class App extends React.Component {
       register: false,
       movieList: true,
       token: null,
+      page:null
     }
   }
   componentDidMount(){
@@ -56,6 +57,9 @@ class App extends React.Component {
   }
   getMovies = async (page:1)=>{
 
+    console.log('PAGE');
+    console.log(page);
+
     const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
 
     const movies = await response.json()
@@ -81,7 +85,8 @@ class App extends React.Component {
       })
 
     this.setState({
-      movies: [...this.state.movies, list]
+      movies: [...this.state.movies, list],
+      page: page
     })
   }
   getUserData = async ()=>{
@@ -123,7 +128,7 @@ class App extends React.Component {
         }
         {this.state.register? <Register showMovieList={this.showMovieList}getUserData={this.getUserData} loginFromRegister={this.loginFromRegister}/> : null}
         {this.state.logged? <User userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData} concatUserData={this.concatUserData}/>: null }
-        {this.state.movieList? <MainContainer movies={this.state.movies}/> : null}
+        {this.state.movieList? <MainContainer page={this.state.page}movies={this.state.movies} getMovies={this.getMovies}/> : null}
         <Footer/>
       </div>
     );

@@ -7,6 +7,9 @@ class Maincontainer extends React.Component {
 	  return (
 	    <div className="mainContainer">
 	    	{this.props.movies}
+	    	<button onClick={this.props.getMovies.bind(null,this.props.page + 1)}>
+	    		More Movies
+	    	</button>
 	    </div>
 	  );
 
