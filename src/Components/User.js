@@ -7,7 +7,8 @@ class User extends React.Component {
 		super()
 		this.state={
 			groupName:'',
-			userpsw:''
+			userpsw:'',
+			msg:null
 		}
 	}
 	componentDidMount(){
@@ -79,7 +80,16 @@ class User extends React.Component {
 
 		    const parsedResponse = await deletedUser.json();
 
-		    document.querySelector('#deleteAccount').style.visibility='hidden'
+		    if (parsedResponse.status === 200){
+		    	
+		    	document.querySelector('#deleteAccount').style.visibility='hidden'
+		    	this.props.showUser(false)
+		    }
+		    else{
+		    	this.setState({
+		    		msg: parsedResponse.data
+		    	})
+		    }
 	    } 
 	    catch(err){
 	    	console.log(err);
@@ -112,7 +122,7 @@ class User extends React.Component {
 		    			value='DELETE ACCOUNT'/>
 
 		    		<div id='deleteAccount'>
-		    			<p>confirm password</p>
+		    			<p>confirm password:{this.state.msg ? this.state.msg:null}</p>
 		    			<input type='password' name='userpsw'value={this.state.deleteAccount} onChange={this.handleChanged}/>
 		    			<input type='submit' onClick={this.handleDeleteAccount} value='DELETE'/>		    		
 		    		</div>

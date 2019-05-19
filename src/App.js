@@ -51,14 +51,23 @@ class App extends React.Component {
               user: false
             })
   }
+  editClose = (email,password)=>{
+    this.setState({
+            edit: false,
+            token:{
+              email: email,
+              password: password
+            },
+        })
+  }
   showMovieList = ()=>{
     this.setState({
               movieList: true
             })
   }
-  showUser = ()=>{
+  showUser = (bollean)=>{
     this.setState({
-              user: true
+              user: bollean
             })
   }
   loginFromRegister= (email,password)=>{
@@ -130,14 +139,14 @@ class App extends React.Component {
     // console.log(this.state.token);
     return (
       <div className="App">
-        {this.state.register ?
+        {this.state.register || this.state.edit ?
           null
           :
-          <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister} token={this.state.token}/>
+          <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister} token={this.state.token} showUser={this.showUser}/>
         }
         {this.state.register? <Register showMovieList={this.showMovieList} loginFromRegister={this.loginFromRegister}/> : null}
-        {this.state.edit? <Edit showMovieList={this.showMovieList} userData={this.state.userData} showUser={this.state.showUser}/> : null}
-        {this.state.user? <User userLoggedId={this.state.userId} userGroups={this.state.userGroups} getUserData={this.getUserData} concatUserData={this.concatUserData} edit={this.editAccount}/>: null }
+        {this.state.edit? <Edit showMovieList={this.showMovieList} userData={this.state.userData} showUser={this.showUser} editClose={this.editClose} /> : null}
+        {this.state.user? <User userLoggedId={this.state.userId} userGroups={this.state.userGroups} getUserData={this.getUserData} concatUserData={this.concatUserData} edit={this.editAccount} showUser={this.showUser}/>: null }
         {this.state.movieList? <MainContainer page={this.state.page}movies={this.state.movies} getMovies={this.getMovies}/> : null}
         <Footer/>
       </div>

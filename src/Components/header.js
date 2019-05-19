@@ -21,9 +21,18 @@ class Header extends React.Component {
 			
 		}
 	}
-	handleChage =(event)=> {
+	handleChage = (event)=> {
 		this.setState({
 			[event.target.name]: event.target.value
+		})
+	}
+	handleLogout = (event)=>{
+		event.preventDefault()
+		this.props.showUser(false)
+		this.setState({
+			logged:false,
+			email:'',
+			password:''
 		})
 	}
 	handleLogin = async (event)=> {
@@ -80,6 +89,13 @@ class Header extends React.Component {
 		e.preventDefault()
 		this.props.renderRegister()
 	}
+	logoutBtn = ()=>{
+		return(<input
+    			type='submit' 
+    			value='Logout'
+    			onClick={this.handleLogout}/>	
+	    )
+	}
 	loginRegister = ()=>{
 	    return(	
 	    	<form className='login-form'>
@@ -120,7 +136,7 @@ class Header extends React.Component {
 	    			<h1>Catalog</h1>
 	    		</div>
 	    		<div>
-				    {this.state.logged ? <h2>{this.state.usernameLogged}<br/><button>logout</button></h2> : this.loginRegister()}
+				    {this.state.logged ? <div><h2>{this.state.usernameLogged}</h2> {this.logoutBtn()}</div> : this.loginRegister()}
 			    	
 			    	{this.state.msg !== '' ? <p>{this.state.msg}</p> : <p></p>}
 		    	</div>

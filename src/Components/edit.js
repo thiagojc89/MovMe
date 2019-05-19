@@ -27,30 +27,42 @@ class Edit extends React.Component {
 	handleSubmit = async (e) => {
 	    e.preventDefault();
 
-	    const editResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/register', {
-	      method: 'PUT',
-	      credentials: 'include',
-	      body: JSON.stringify(this.state),
-	      headers:{
-	        'Content-Type': 'application/json'
-	        }
-	    });
+	    const userNewInfor = {}
+	    userNewInfor.firstName = this.state.firstName
+	    userNewInfor.lastName = this.state.lastName
+	    userNewInfor.email = this.state.email
+	    userNewInfor.password = this.state.password
 
-	    const parsedResponse = await editResponse.json();
-	    
-	    if (parsedResponse.status === 200){
+	      try{
+			    const editResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/auth/' + this.props.userData._id, {
+				      method: 'PUT',
+				      credentials: 'include',
+				      body: JSON.stringify(userNewInfor),
+				      headers:{
+				        'Content-Type': 'application/json'
+				        }
+			    });
 
+			    const parsedResponse = await editResponse.json();
+			    
+			    if (parsedResponse.status === 200){
+			    	console.log('update user info');
+			    	
+			    	this.props.showMovieList()
+					this.props.showUser(true)
+					this.props.editClose(this.state.email,this.state.password)
+					// this.props.getUserData()
 
-	    }
-	    else{
-	    	console.log('error in edit user');
-	    }
-
-
-
+			    }
+			    else{
+			    	console.log('error in edit user');
+			    }	
+	      }
+	      catch(err){
+	      		console.log(err);
+	      }
   	}
 	render(){
-		console.log(this.props);
 	  return (
 	    <div className='registerContainer'>
 	    	<form className='registerForm' onSubmit={this.handleSubmit}>
