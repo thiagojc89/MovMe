@@ -23,9 +23,14 @@ class User extends React.Component {
 		//makes input visible so then the user can type the name of the group.
 		document.querySelector('#nameGroup').style.visibility='visible'
 	}
-	handleDeletebutton = (e)=>{
+	handleEditButton = (e)=>{
 		e.preventDefault();
-		//makes input visible so then the user can type the name of the group.
+		
+		this.props.edit()
+	}
+	handleDeleteButton = (e)=>{
+		e.preventDefault();
+		
 		document.querySelector('#deleteAccount').style.visibility='visible'
 	}
 	handleCreateGroup = async (e) => {
@@ -49,7 +54,7 @@ class User extends React.Component {
 
 		    this.props.concatUserData(parsedResponse.data)
 		    
-		    document.querySelector('#nameGroup').style.visibility='hidden'
+		    document.querySelector('#nameGroup').hidden();
 		    
 	    } 
 	    catch(err){
@@ -97,17 +102,25 @@ class User extends React.Component {
 
 		    		<input 
 		    			type='submit' 
-		    			onClick={this.handleDeletebutton} 
+		    			onClick={this.handleEditButton} 
+		    			value='EDIT ACCOUNT'/>
+		    		<br/>
+		    		<br/>
+		    		<input 
+		    			type='submit' 
+		    			onClick={this.handleDeleteButton} 
 		    			value='DELETE ACCOUNT'/>
+
 		    		<div id='deleteAccount'>
 		    			<p>confirm password</p>
 		    			<input type='password' name='userpsw'value={this.state.deleteAccount} onChange={this.handleChanged}/>
 		    			<input type='submit' onClick={this.handleDeleteAccount} value='DELETE'/>		    		
 		    		</div>
+		    		
 		    	</form>
 	    	</div>
 	    	<div className='userIndex'>
-	    		{this.props.userData.length > 0 ? <Group userData={this.props.userData}/>: null}
+	    		{this.props.userGroups.length > 0 ? <Group userGroups={this.props.userGroups}/>: null}
 	    	</div>
 	    </div>
 	  );

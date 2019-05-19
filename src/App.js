@@ -4,6 +4,7 @@ import Header from './Components/header'
 import MainContainer from './Components/mainContainer'
 import User from './Components/User'
 import Register from './Components/register'
+import Edit from './Components/edit'
 import Footer from './Components/footer'
 
 
@@ -14,10 +15,12 @@ class App extends React.Component {
       movies:[],
       logged:false,
       userId: null,
-      userData:[],
+      userData:null,
+      userGroups:[],
       usernameLogged:null,
-      users: false,
+      user: false,
       register: false,
+      edit: false,
       movieList: true,
       token: null,
       page:null
@@ -31,7 +34,7 @@ class App extends React.Component {
   login = (userId)=>{
     
     this.setState({
-              logged: true,
+              user: true,
               userId: userId
             })
   }
@@ -41,9 +44,21 @@ class App extends React.Component {
               movieList: false
             })
   }
+  editAccount = ()=>{
+    this.setState({
+              edit: true,
+              movieList: false,
+              user: false
+            })
+  }
   showMovieList = ()=>{
     this.setState({
               movieList: true
+            })
+  }
+  showUser = ()=>{
+    this.setState({
+              user: true
             })
   }
   loginFromRegister= (email,password)=>{
@@ -64,11 +79,11 @@ class App extends React.Component {
     const list = movies.results.map((movie,i)=>{
       return (
           <div key={i} className='movieElement'>
-            <div class='movie-Poster'>
+            <div className='movie-Poster'>
               <img alt='' src={'https://image.tmdb.org/t/p/w154'+movie.poster_path}/>
             </div>
             <br/>
-            <div class='movie-Title'>
+            <div className='movie-Title'>
               <strong>{movie.title}</strong>
             </div>
           </div>
@@ -84,13 +99,15 @@ class App extends React.Component {
   getUserData = async ()=>{
   try{
   
-      // to create a group we need to pass the Id of the user logged in this.props.userLoggedId
-      const userData = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/'+ this.state.userId)
+      const userGroups = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/groups/'+ this.state.userId)
 
-      const parsedResponse = await userData.json();
+      const parsedResponse = await userGroups.json();
+
+      console.log(parsedResponse);
 
       this.setState({
-        userData: [...this.state.userData, parsedResponse.data.group]
+        userGroups: [...this.state.userGroups, parsedResponse.data.group],
+        userData: parsedResponse.data
       })
     
     } 
@@ -101,12 +118,12 @@ class App extends React.Component {
   concatUserData = (newData)=>{
 
   
-    const allGroups = this.state.userData
+    const allGroups = this.state.userGroups
 
     allGroups[0].push(newData.newGroup)
 
     this.setState({
-      userData: allGroups
+      userGroups: allGroups
     })
   }
   render(){
@@ -118,8 +135,9 @@ class App extends React.Component {
           :
           <Header login={this.login} getUserData={this.getUserData} renderRegister={this.renderRegister} token={this.state.token}/>
         }
-        {this.state.register? <Register showMovieList={this.showMovieList}getUserData={this.getUserData} loginFromRegister={this.loginFromRegister}/> : null}
-        {this.state.logged? <User userLoggedId={this.state.userId} userData={this.state.userData} getUserData={this.getUserData} concatUserData={this.concatUserData}/>: null }
+        {this.state.register? <Register showMovieList={this.showMovieList} loginFromRegister={this.loginFromRegister}/> : null}
+        {this.state.edit? <Edit showMovieList={this.showMovieList} userData={this.state.userData} showUser={this.state.showUser}/> : null}
+        {this.state.user? <User userLoggedId={this.state.userId} userGroups={this.state.userGroups} getUserData={this.getUserData} concatUserData={this.concatUserData} edit={this.editAccount}/>: null }
         {this.state.movieList? <MainContainer page={this.state.page}movies={this.state.movies} getMovies={this.getMovies}/> : null}
         <Footer/>
       </div>
