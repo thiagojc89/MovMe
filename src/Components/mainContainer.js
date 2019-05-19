@@ -2,19 +2,29 @@ import React from 'react';
 
 
 class Maincontainer extends React.Component {
-	
 	render(){
 	  return (
 	    <div className="mainContainer">
-	    	{this.props.movies}
+	    	{this.props.page > 1?
+	    	<button className='previuos-btn' onClick={this.props.getMovies.bind(null,this.props.page - 1 )}>
+	    		previuos Page
+	    	</button>:null}
+
+
 	    	<button onClick={this.props.getMovies.bind(null,this.props.page + 1)}>
-	    		More Movies
+	    		Next Page
+	    	</button>
+	    	{this.props.movies}
+	    	<button className='previuos-btn' onClick={this.props.getMovies.bind(null,this.props.page - 1 )}>
+	    		previuos Page
+	    	</button>
+	    	<button onClick={this.props.getMovies.bind(null,this.props.page + 1)}>
+	    		Next Page
 	    	</button>
 	    </div>
 	  );
-
 	}
 }
 
-	    	// {this.props.getMovies()}
+	    	
 export default Maincontainer;

@@ -124,7 +124,9 @@ a > img{
 #deleteAccount{
 	visibility: hidden;	
 }
-
+.previuos-btn{
+	disabled: true;		
+}
 
 
 

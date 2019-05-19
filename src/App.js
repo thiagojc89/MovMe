@@ -57,9 +57,6 @@ class App extends React.Component {
   }
   getMovies = async (page:1)=>{
 
-    console.log('PAGE');
-    console.log(page);
-
     const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
 
     const movies = await response.json()
@@ -85,7 +82,8 @@ class App extends React.Component {
       })
 
     this.setState({
-      movies: [...this.state.movies, list],
+      // movies: [...this.state.movies, list],
+      movies: list,
       page: page
     })
   }
