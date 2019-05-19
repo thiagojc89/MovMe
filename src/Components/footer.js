@@ -5,10 +5,9 @@ import github from './GitHub_Logo.png'
 function Footer() {
   return (
     <div className="footer">
-    	<div id="credit">
-	    	<span>create by: Thiago Cavalcante</span>
-	    		<div>
-	    		
+    	<div id="credits">
+	    	© Thiago Cavalcante
+	    		<div className='links'>
 					<a href="https://github.com/thiagojc89">
 						<img alt='' className='footer-img' src={github}/>
 					</a> 
@@ -17,9 +16,12 @@ function Footer() {
 					</a>
 				</div>
 		</div>
-		<a href="https://www.themoviedb.org/">
-    		<img alt='' src='https://www.themoviedb.org/assets/2/v4/logos/408x161-powered-by-rectangle-blue-10d3d41d2a0af9ebcb85f7fb62ffb6671c15ae8ea9bc82a2c6941f223143409e.png'/>
-    	</a>
+
+		<div id='tmdb'>
+			<a href="https://www.themoviedb.org/">
+    			<img alt='' src='https://www.themoviedb.org/assets/2/v4/logos/408x161-powered-by-rectangle-blue-10d3d41d2a0af9ebcb85f7fb62ffb6671c15ae8ea9bc82a2c6941f223143409e.png'/>
+    		</a>
+    	</div>
     </div>
   );
 }

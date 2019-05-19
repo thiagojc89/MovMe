@@ -64,18 +64,12 @@ class App extends React.Component {
     const list = movies.results.map((movie,i)=>{
       return (
           <div key={i} className='movieElement'>
-
-            <img alt='' src={'https://image.tmdb.org/t/p/w154'+movie.poster_path}/>
-
-            <div className='movieData'>
-                <div>
-                    <strong>Title: </strong>{movie.title}
-
-                </div>
-                <br/>
-                <div>
-                    <strong>Overview: </strong>{movie.overview}
-                </div>
+            <div class='movie-Poster'>
+              <img alt='' src={'https://image.tmdb.org/t/p/w154'+movie.poster_path}/>
+            </div>
+            <br/>
+            <div class='movie-Title'>
+              <strong>{movie.title}</strong>
             </div>
           </div>
         )

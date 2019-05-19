@@ -45,38 +45,56 @@ a{
 .footer{
 	border-top: 10px solid black;
 	display: flex;
-	justify-content: space-around;
+	flex-direction: row;
+	justify-content: center;
 	margin: 30px 40px 0 40px;
 	padding: 20px;
 }
-.footer > a > img{
-	object-fit: contain;
-	height: 70px;
-	margin-right: 200px;
-}
-a > img{
-	object-fit: contain;
-	height: 30px;
-}
-#tmdb{
-	object-fit: contain;
-	height: 30px;
-}
-#credit{
+#credits{
 	display: flex;
+	/*border: 2px solid green;*/
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-size: 12px;
-	margin-left: 200px;
+}
+.footer-img{
+	/*border: 2px solid black;*/
+	object-fit: contain;
+	height: 30px;
+}
+#tmdb{
+	margin-left: 50px;
+}
+#tmdb a > img{
+	/*border: 2px solid red;*/
+	object-fit: contain;
+	height: 70px;
+}
+#movieGrid{
+	display: flex;
+ 	flex-flow: row wrap;
+ 	justify-content: center;
 }
 .movieElement{
  	display: flex;
- 	flex-direction: row ;
+ 	flex-flow: column wrap;
  	margin: 30px;
  	padding-bottom: 10px;
  	border-bottom: 5px solid grey;
+ 	width: 154px;
 
+}
+.movie-Poster{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+}
+.movie-Title{
+	text-align: center;
+	font-size: 12px;
+	width: 154px;
 }
 .movieData{
 	display: flex;
@@ -124,9 +142,7 @@ a > img{
 #deleteAccount{
 	visibility: hidden;	
 }
-.previuos-btn{
-	disabled: true;		
-}
+
 
 
 

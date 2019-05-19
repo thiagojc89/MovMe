@@ -14,7 +14,9 @@ class Maincontainer extends React.Component {
 	    	<button onClick={this.props.getMovies.bind(null,this.props.page + 1)}>
 	    		Next Page
 	    	</button>
-	    	{this.props.movies}
+	    	<div id='movieGrid'>
+	    		{this.props.movies}
+	    	</div>
 	    	<button className='previuos-btn' onClick={this.props.getMovies.bind(null,this.props.page - 1 )}>
 	    		previuos Page
 	    	</button>
