@@ -51,11 +51,13 @@ class User extends React.Component {
 			    }
 		    });
 
+
 		    const parsedResponse = await createGroup.json();
 
 		    this.props.concatUserData(parsedResponse.data)
-		    
-		    document.querySelector('#nameGroup').hidden();
+		    console.log('parsedResponse');
+		    // document.querySelector('#nameGroup').hidden();
+		    document.querySelector('#nameGroup').style.visibility='hidden'
 		    
 	    } 
 	    catch(err){
